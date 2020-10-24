@@ -14,8 +14,25 @@
     <div>
         <img class="photo" src="{{ photo.image.url }}" width="auto" height="250" alt="picture">
         <p class="pre">Подпись: {{ photo.signature }}</p>
-        <p>Автор: {{ photo.author }}</p>
+        {% if photo.author.first_name or photo.author.last_name %}
+            <p>Автор: {{ photo.author.last_name }} {{ photo.author.first_name }}</p>
+        {% else %}
+            <p>Автор: {{ photo.author }}</p>
+        {% endif %}
+
         <p>Время создания: {{ photo.created_at }}</p>
+        <h3>Список пользователей, которые сохранили в избранном:</h3>
+        {% if is_paginated %}
+           {% include 'partial/pagination.html' %}
+        {% endif %}
+        {% for i in photo.chosens.all %}
+            <p><a href="{% url 'accounts:detail' i.user.pk %}" class="button cancel">{{ i.user}}</a></p><br/>
+        {% endfor %}
+        {% if is_paginated %}
+           {% include 'partial/pagination.html' %}
+        {% endif %}
+{#                <a href="{% url 'webapp:photo_view' i.image.pk %}"><img class="photo" src="{{ i.image.image.url }}" width="auto" height="120" alt="picture"></a>#}
+
 {#        <p><a href="{% url 'product_review_add' product.pk %}" class="card-button">Add review</a></p>#}
 {#        <h3>Reviews:</h3>#}
 {#        {% if is_paginated %}#}

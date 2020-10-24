@@ -9,6 +9,10 @@ class Photo(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_DEFAULT, default=1,
                                related_name='photos', verbose_name='Автор')
 
+    def chosen_by(self, user):
+        user = self.chosens.filter(user=user)
+        return user.count() > 0
+
     def __str__(self):
         return f"{self.author} -- {self.signature}"
 
@@ -23,7 +27,6 @@ class Chosen(models.Model):
 
     image = models.ForeignKey('webapp.Photo', on_delete=models.CASCADE,
                               related_name='chosens', verbose_name='избр. фотография')
-
 
     class Meta:
         verbose_name = 'Избранная фотография'

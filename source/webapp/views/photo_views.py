@@ -15,7 +15,7 @@ from .base_views import SearchView
 class IndexView(SearchView):
     template_name = 'photos/index.html'
     context_object_name = 'photos'
-    paginate_by = 6
+    paginate_by = 9
     paginate_orphans = 0
     model = Photo
     ordering = ['-created_at']

@@ -1,22 +1,28 @@
-async function onLike(event) {
+async function addFavorite(event) {
     event.preventDefault();
     let likeBtn = event.target;
     let url = likeBtn.href;
 
     try {
-        let response = await makeRequest(url, 'POST');
-        let data = await response.text();
-        console.log(data);
-        const counter = likeBtn.parentElement.getElementsByClassName('counter')[0];
-        counter.innerText = data;
+        await makeRequest(url, 'POST');
+        console.log("Добавлено в избранное")
+        const container = document.getElementsByClassName('container')[0]
+        let note = document.createElement('div')
+        container.before(note)
+        note.innerHTML = `<h6 style="color: #155724">Вы добавили фото в избранное.</h6>`
+        note.classList.add('mx-4', 'mx-4', 'px-3', 'py-2', 'note_success')
+        setTimeout(() => note.remove(), 3000);
+
     }
     catch (error) {
         console.log(error);
+        const container = document.getElementsByClassName('container')[0]
+        let note = document.createElement('div')
+        container.before(note)
+        note.innerHTML = `<h6 style="color: #721c24">Вы уже добававили это фото в избранное!</h6>`
+        note.classList.add('mx-4', 'mx-4', 'px-3', 'py-2', 'note_danger')
+        setTimeout(() => note.remove(), 3000);
     }
-
-    likeBtn.classList.add('hidden');
-    const unlikeBtn = likeBtn.parentElement.getElementsByClassName('unlike')[0];
-    unlikeBtn.classList.remove('hidden');
 }
 
 async function onUnlike(event) {

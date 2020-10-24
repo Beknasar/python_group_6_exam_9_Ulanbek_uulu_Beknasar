@@ -1,4 +1,4 @@
-
+{% load chosens %}
     {% for photo in photos %}
         <div class="card">
             <div class="card-content">
@@ -15,6 +15,13 @@
                 <p>Подпись: {{ photo.signature }}<br/>
                 Автор: {{ photo.author }}<br/>
                 Время создания: {{ photo.created_at }}</p>
+                <button class=" add_chosen button accept">ADD in FAV</button>
+{#                {% if user.is_authenticated %}#}
+{#                    {% with photo|chosen_by:user as chosed %}#}
+{#                        <a class="{% if chosed %}hidden{% endif %} like" href="{% url 'webapp:article_like' article.pk %}">Like</a>#}
+    {#                    <a class="{% if not chosed %}hidden{% endif %} unlike" href="{% url 'webapp:article_unlike' article.pk %}">Unlike</a>#}
+{#                    {% endwith %}#}
+{#                {% endif %}#}
                 <br/>
             </div>
         </div>
