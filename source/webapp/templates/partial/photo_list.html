@@ -1,25 +1,24 @@
-<div class = "products">
-        {% for photo in photos %}
-            <div class="card">
-                <div class="card-content">
-                    <br/>
-                    <p>
-                    {% if perms.webapp.change_photo or photo.author == request.user %}
-                        <a href="{% url 'webapp:photo_update' photo.pk %}" class="card-link" style="padding-right: 3px ">Update <i class="far fa-edit"></i></a>
-                    {% endif %}
-                    {% if perms.webapp.delete_photo or photo.author == request.user %}
-                        <a href="{% url 'webapp:photo_delete' photo.pk %}" class="card-link">Delete <i class="far fa-trash-alt"></i></a>
-                    {% endif %}
-                    </p>
-                    <a href="{% url 'webapp:photo_view' photo.pk %}"><img class="photo" src="{{ photo.image.url }}" width="auto" height="120" alt="picture"></a>
-                    <p>Подпись: {{ photo.signature }}<br/>
-                    Автор: {{ photo.author }}<br/>
-                    Время создания: {{ photo.created_at }}</p>
-                    <br/>
-                </div>
-		    </div>
-        {% endfor %}
-         {% if is_paginated %}
-            {% include 'partial/pagination.html' %}
-        {% endif %}
-    </div>
+
+    {% for photo in photos %}
+        <div class="card">
+            <div class="card-content">
+                <br/>
+                <p>
+                {% if perms.webapp.change_photo or photo.author == request.user %}
+                    <a href="{% url 'webapp:photo_update' photo.pk %}" class="card-link" style="padding-right: 3px ">Update <i class="far fa-edit"></i></a>
+                {% endif %}
+                {% if perms.webapp.delete_photo or photo.author == request.user %}
+                    <a href="{% url 'webapp:photo_delete' photo.pk %}" class="card-link">Delete <i class="far fa-trash-alt"></i></a>
+                {% endif %}
+                </p>
+                <a href="{% url 'webapp:photo_view' photo.pk %}"><img class="photo" src="{{ photo.image.url }}" width="auto" height="120" alt="picture"></a>
+                <p>Подпись: {{ photo.signature }}<br/>
+                Автор: {{ photo.author }}<br/>
+                Время создания: {{ photo.created_at }}</p>
+                <br/>
+            </div>
+        </div>
+    {% endfor %}
+     {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}

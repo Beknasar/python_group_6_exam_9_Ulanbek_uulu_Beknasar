@@ -13,7 +13,7 @@ body {
 .container {
     margin: 0 auto;
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 .navbar {
@@ -66,7 +66,7 @@ body {
 }
 
 .card{
-	width: 250px;
+	width: 290px;
 	background: white;
 	display: inline-block;
     box-sizing: border-box;

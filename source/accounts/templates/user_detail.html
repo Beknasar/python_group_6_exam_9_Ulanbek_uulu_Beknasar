@@ -21,5 +21,35 @@
     <p>Почта: {{ user_obj.email }}</p>
 
     <h2 class="text-center clear">Избранные пользователя:</h2>
-    {% include 'partial/chosen_list.html' %}
+{#    {% for i in user_obj.user_chosen.all %}#}
+{#        <a href="{% url 'webapp:photo_view' i.image.pk %}"><img class="photo" src="{{ i.image.image.url }}" width="auto" height="120" alt="picture"></a>#}
+{#    {% endfor %}#}
+
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+
+    {% with user_obj.user_chosen.all as photos %}
+        {% for photo in photos %}
+            <div class="card">
+                <div class="card-content">
+                    <br/>
+                    <p>
+                    {% if perms.webapp.change_photo or photo.author == request.user %}
+                        <a href="{% url 'webapp:photo_update' photo.image.pk %}" class="card-link" style="padding-right: 3px ">Update <i class="far fa-edit"></i></a>
+                    {% endif %}
+                    {% if perms.webapp.delete_photo or photo.author == request.user %}
+                        <a href="{% url 'webapp:photo_delete' photo.image.pk %}" class="card-link">Delete <i class="far fa-trash-alt"></i></a>
+                    {% endif %}
+                    </p>
+                    <a href="{% url 'webapp:photo_view' photo.image.pk %}"><img class="photo" src="{{ photo.image.image.url }}" width="auto" height="120" alt="picture"></a>
+                    <p>Подпись: {{ photo.image.signature }}<br/>
+                    Автор: {{ photo.image.author }}<br/>
+                    Время создания: {{ photo.image.created_at }}</p>
+                    <br/>
+                </div>
+            </div>
+        {% endfor %}
+    {% endwith %}
+{#    {% include 'partial/chosen_list.html' %}#}
 {% endblock %}

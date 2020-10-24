@@ -18,11 +18,12 @@ class Photo(models.Model):
 
 
 class Chosen(models.Model):
-    User = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
                                related_name='user_chosen', verbose_name='Пользователь')
 
     image = models.ForeignKey('webapp.Photo', on_delete=models.CASCADE,
                               related_name='chosens', verbose_name='избр. фотография')
+
 
     class Meta:
         verbose_name = 'Избранная фотография'
