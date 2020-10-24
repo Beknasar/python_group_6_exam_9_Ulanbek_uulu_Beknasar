@@ -15,7 +15,7 @@ from .base_views import SearchView
 class IndexView(SearchView):
     template_name = 'photos/index.html'
     context_object_name = 'photos'
-    paginate_by = 2
+    paginate_by = 6
     paginate_orphans = 0
     model = Photo
     ordering = ['-created_at']
@@ -58,6 +58,10 @@ class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
     context_object_name = 'photo'
     permission_required = 'webapp.change_photo'
 
+    def has_permission(self):
+        photo = self.get_object()
+        return super().has_permission() or photo.author == self.request.user
+
     def get_queryset(self):
         return super().get_queryset()
 
@@ -69,7 +73,11 @@ class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'photos/photo_delete.html'
     model = Photo
     success_url = reverse_lazy('webapp:index')
-    permission_required = 'webapp.delete_product'
+    permission_required = 'webapp.delete_photo'
+
+    def has_permission(self):
+        photo = self.get_object()
+        return super().has_permission() or photo.author == self.request.user
 
     def has_permission(self):
         return super().has_permission()
