@@ -26,3 +26,13 @@ class IndexView(SearchView):
         # if not self.request.GET.get('is_admin', None):
         #     data = data.filter(status='moderated')
         return data
+
+
+class PhotoView(DetailView):
+    model = Photo
+    template_name = 'photos/photo_view.html'
+
+    # чтоб товары, которых не осталось нельзя было и просмотреть
+    # это можно добавить вместо model = Product в Detail, Update и Delete View.
+    def get_queryset(self):
+        return super().get_queryset()

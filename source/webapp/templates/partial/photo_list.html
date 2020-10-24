@@ -9,10 +9,9 @@
 {#                    {% if perms.webapp.change_product %}#}
 {#                        <a href="{% url 'webapp:product_update' product.pk %}" class="card-button"><i class="far fa-edit"></i></a>#}
 {#                    {% endif %}#}
-{#                    <h3><a href="{% url 'webapp:product_view' product.pk %}">{{ product.name }}</a></h3>#}
-                    <img class="photo" src="{{ photo.image.url }}" width="250" height="200" alt="picture">
+                    <a href="{% url 'webapp:photo_view' photo.pk %}"><img class="photo" src="{{ photo.image.url }}" width="250" height="200" alt="picture"></a>
                     <p>Подпись: {{ photo.signature }}</p>
-                    <p>Цена {{ photo.author }}</p>
+                    <p>Автор: {{ photo.author }}</p>
                     <p>Время создания: {{ photo.created_at }}</p>
                     <br/>
                 </div>
