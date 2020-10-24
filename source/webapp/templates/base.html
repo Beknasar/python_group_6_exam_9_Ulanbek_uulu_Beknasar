@@ -10,7 +10,7 @@
 
     <!-- XDSoft DateTimePicker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block links %}{% endblock %}
 </head>
@@ -28,6 +28,7 @@
                 {% block auth_menu %}
                     {% if request.user.is_authenticated %}
                         <li><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Logout</a></li>
+                        <li><a href="{% url 'webapp:photo_create' %}">Add Photo <i class="fas fa-plus-circle"></i></a></li>
                     {% else %}
                         <li><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Login</a></li>
                         <li><a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Sign Up</a></li>

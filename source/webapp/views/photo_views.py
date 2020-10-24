@@ -36,3 +36,20 @@ class PhotoView(DetailView):
     # это можно добавить вместо model = Product в Detail, Update и Delete View.
     def get_queryset(self):
         return super().get_queryset()
+
+
+class PhotoCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'photos/photo_create.html'
+    form_class = PhotoForm
+    model = Photo
+
+    def form_valid(self, form):
+        photo = form.save(commit=False)
+        photo.author = self.request.user
+        photo.save()
+        form.save_m2m()
+        return redirect('webapp:photo_view', pk=photo.pk)
+
+
+
+

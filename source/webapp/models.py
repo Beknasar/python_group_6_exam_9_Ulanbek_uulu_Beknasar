@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Photo(models.Model):
-    image = models.ImageField(upload_to='user_pics', verbose_name='Аватар')
+    image = models.ImageField(upload_to='pics', verbose_name='Фотография')
     signature = models.CharField(max_length=100, verbose_name='Название')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_DEFAULT, default=1,
