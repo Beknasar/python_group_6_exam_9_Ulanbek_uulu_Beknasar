@@ -22,7 +22,7 @@
                 {% if request.user.is_authenticated %}
                     {% block menu %}{% endblock %}
                     <li><a href="{% url 'accounts:detail' request.user.pk %}">
-                        Привет, {{ request.user.get_full_name|default:request.user.username }}
+                        Hello, {{ request.user.get_full_name|default:request.user.username }}
                     </a></li>
                 {% endif %}
                 {% block auth_menu %}

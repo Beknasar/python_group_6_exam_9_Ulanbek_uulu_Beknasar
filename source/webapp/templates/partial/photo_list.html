@@ -6,9 +6,9 @@
 {#                    {% if perms.webapp.delete_product %}#}
 {#                        <a href="{% url 'webapp:product_delete' product.pk %}" class="card-button"><i class="far fa-trash-alt"></i></a>#}
 {#                    {% endif %}#}
-{#                    {% if perms.webapp.change_product %}#}
-{#                        <a href="{% url 'webapp:product_update' product.pk %}" class="card-button"><i class="far fa-edit"></i></a>#}
-{#                    {% endif %}#}
+                    {% if perms.webapp.change_photo or photo.author == request.user %}
+                        <a href="{% url 'webapp:photo_update' photo.pk %}" class="card-button"><i class="far fa-edit"></i></a>
+                    {% endif %}
                     <a href="{% url 'webapp:photo_view' photo.pk %}"><img class="photo" src="{{ photo.image.url }}" width="250" height="200" alt="picture"></a>
                     <p>Подпись: {{ photo.signature }}</p>
                     <p>Автор: {{ photo.author }}</p>

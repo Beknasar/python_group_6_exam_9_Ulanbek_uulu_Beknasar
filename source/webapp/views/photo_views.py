@@ -51,5 +51,18 @@ class PhotoCreateView(LoginRequiredMixin, CreateView):
         return redirect('webapp:photo_view', pk=photo.pk)
 
 
+class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
+    template_name = 'photos/photo_update.html'
+    form_class = PhotoForm
+    model = Photo
+    context_object_name = 'product'
+    permission_required = 'webapp.change_photo'
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_success_url(self):
+        return reverse('webapp:photo_view', kwargs={'pk': self.object.pk})
+
 
 
