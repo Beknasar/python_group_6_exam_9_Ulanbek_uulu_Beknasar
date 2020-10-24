@@ -55,7 +55,7 @@ class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'photos/photo_update.html'
     form_class = PhotoForm
     model = Photo
-    context_object_name = 'product'
+    context_object_name = 'photo'
     permission_required = 'webapp.change_photo'
 
     def get_queryset(self):
@@ -65,4 +65,15 @@ class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
         return reverse('webapp:photo_view', kwargs={'pk': self.object.pk})
 
 
+class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
+    template_name = 'photos/photo_delete.html'
+    model = Photo
+    success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.delete_product'
+
+    def has_permission(self):
+        return super().has_permission()
+
+    def get_queryset(self):
+        return super().get_queryset()
 

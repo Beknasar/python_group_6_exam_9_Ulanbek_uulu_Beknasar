@@ -1,5 +1,5 @@
 from django.urls import path, include
-from webapp.views import IndexView, PhotoView, PhotoCreateView, PhotoUpdateView
+from webapp.views import IndexView, PhotoView, PhotoCreateView, PhotoUpdateView, PhotoDeleteView
 
 app_name = 'webapp'
 
@@ -10,6 +10,7 @@ urlpatterns = [
         path('<int:pk>/', include([
             path('', PhotoView.as_view(), name='photo_view'),
             path('update/', PhotoUpdateView.as_view(), name='photo_update'),
+            path('delete/', PhotoDeleteView.as_view(), name='photo_delete'),
         ])),
         path('create/', PhotoCreateView.as_view(), name='photo_create'),
     ])),

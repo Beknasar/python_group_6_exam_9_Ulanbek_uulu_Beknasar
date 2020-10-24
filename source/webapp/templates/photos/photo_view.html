@@ -3,9 +3,8 @@
 {% block title %}View{% endblock %}
 
 {% block menu %}
-{#    {% if perms.webapp.delete_product %}#}
-{#        <li><a href="{% url 'product_delete' product.pk %}">Delete <i class="fas fa-trash"></i></a></li>#}
-{#    {% endif %}#}
+    {% if perms.webapp.delete_photo %}
+        <li><a href="{% url 'webapp:photo_delete' photo.pk %}">Delete <i class="fas fa-edit"></i></a></li>    {% endif %}
     {% if perms.webapp.change_photo or photo.author == request.user %}
         <li><a href="{% url 'webapp:photo_update' photo.pk %}">Update <i class="fas fa-edit"></i></a></li>
     {% endif %}

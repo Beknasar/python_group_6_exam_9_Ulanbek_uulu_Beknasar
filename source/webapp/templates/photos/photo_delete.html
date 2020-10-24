@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'webapp:photo_view' photo.pk %}">Отмена</a></li>
+{% endblock %}
+
+{% block content %}
+        <h1>Вы уверены, что хотите удалить фотографию?</h1>
+        <img class="photo" src="{{ photo.image.url }}" width="250" height="auto" alt="picture">
+        <p>Подпись: {{ photo.signature }}</p>
+        <p>Автор: {{ photo.author }}</p>
+        <form action="{% url "webapp:photo_delete" photo.pk %}" method="post" class="delete_buttons">
+            {% csrf_token %}
+            <button type="submit" class="button accept">Подтвердить</button>
+            <a href="{% url 'webapp:photo_view' photo.pk %}" class="button cancel">Отмена</a>
+        </form>
+{% endblock %}
