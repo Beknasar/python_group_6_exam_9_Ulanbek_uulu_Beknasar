@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from api.views import get_token_view, ChosenAddView
+from api.views import get_token_view, ChosenAddView, ChoosenRemoveView
 # from .views import QuoteViewSet
 
 app_name = 'api'
@@ -17,6 +17,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('chosen/', include([
         path('add', ChosenAddView.as_view(), name='chosen_add'),
-        # path('create/', OrderCreateView.as_view(), name="order_create"),
+        path('remove/', ChoosenRemoveView.as_view(), name="chosen_delete"),
     ])),
 ]

@@ -15,11 +15,13 @@
                 <p>Подпись: {{ photo.signature }}<br/>
                 Автор: {{ photo.author }}<br/>
                 Время создания: {{ photo.created_at }}</p>
-                <button class=" add_chosen button accept">ADD in FAV</button>
+                <a class=" add_chosen button accept" style="color: white" href ="{% url 'webapp:photo_choose' photo.pk %}">ADD in FAV</a>
+                <a class=" remove_chosen button cancel" style="color: white" href ="{% url 'webapp:photo_remove' photo.pk %}">Remove from FAV</a>
+
 {#                {% if user.is_authenticated %}#}
 {#                    {% with photo|chosen_by:user as chosed %}#}
-{#                        <a class="{% if chosed %}hidden{% endif %} like" href="{% url 'webapp:article_like' article.pk %}">Like</a>#}
-    {#                    <a class="{% if not chosed %}hidden{% endif %} unlike" href="{% url 'webapp:article_unlike' article.pk %}">Unlike</a>#}
+{#                        <a class="{% if chosed %}hidden{% endif %} like" href="{% url 'webapp:photo_choose' photo.pk %}">Like</a>#}
+{#                        <a class="{% if not chosed %}hidden{% endif %} unlike" href="{% url 'webapp:article_unlike' article.pk %}">Unlike</a>#}
 {#                    {% endwith %}#}
 {#                {% endif %}#}
                 <br/>

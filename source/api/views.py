@@ -32,3 +32,16 @@ class ChosenAddView(APIView):
             return HttpResponse('Good job!')
         else:
             return HttpResponse(status=400)
+
+
+
+class ChoosenRemoveView(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    def post(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, pk=kwargs['pk'])
+        if request.user in photo.chosens.all():
+            ch = Chosen.objects.get(user=request.user, image=photo)
+            ch.delete()
+            return HttpResponse('Работает')
+        else:
+            return HttpResponse(status=400)

@@ -7,7 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.timezone import make_naive
 from django.views.generic import View, DetailView, CreateView, UpdateView, DeleteView
 
-from webapp.models import Photo
+from webapp.models import Photo, Chosen
 from webapp.forms import PhotoForm
 from .base_views import SearchView
 
@@ -85,3 +85,21 @@ class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
     def get_queryset(self):
         return super().get_queryset()
 
+
+class PhotoChosenView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, pk=kwargs.get('pk'))
+        chosen, created = Chosen.objects.get_or_create(image=photo, user=request.user)
+        if created:
+            photo.save()
+            return HttpResponse("Всё хорошо")
+        else:
+            return HttpResponseForbidden()
+
+
+class PhotoRemoveView(LoginRequiredMixin, View):
+    def delete(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, pk=kwargs.get('pk'))
+        chosen = Chosen.objects.get(image=photo, user=request.user)
+        chosen.delete()
+        return HttpResponse('Удалён из избранных')

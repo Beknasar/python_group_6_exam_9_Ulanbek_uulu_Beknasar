@@ -8,11 +8,11 @@ async function addChosen(event) {
         let response = await makeRequest(url, 'POST');
         let data = await response.text();
         console.log(data);
-        console.log("Добавлено в избранное")
+        console.log("Добавлено в избранных")
         const container = document.getElementsByClassName('container')[0]
         let note = document.createElement('div')
         container.before(note)
-        note.innerHTML = `<h6 style="color: #155724">Фото добавлено в избранное.</h6>`
+        note.innerHTML = `<h3>Фото добавлено в избранное.</h3>`
         setTimeout(() => note.remove(), 4000);
 
     }
@@ -21,23 +21,25 @@ async function addChosen(event) {
         const container = document.getElementsByClassName('container')[0]
         let note = document.createElement('div')
         container.before(note)
-        note.innerHTML = `<h6 style="color: #721c24">Это фото уже в избранных</h6>`
+        note.innerHTML = `<h3>Это фото уже в избранных</h3>`
         setTimeout(() => note.remove(), 4000);
     }
 }
 
-async function removeFavorite(event) {
+async function removeChoosen(event) {
     event.preventDefault();
-    let likeBtn = event.target;
-    let url = likeBtn.href;
+    let removeBtn = event.target;
+    let url = removeBtn.href;
 
     try {
-        await makeRequest(url, 'POST');
-        console.log("Удалено из избранного")
+        let response = await makeRequest(url, 'POST');
+        let data = await response.text();
+        console.log(data);
+        console.log("Удалено из избранных")
         const container = document.getElementsByClassName('container')[0]
         let note = document.createElement('div')
         container.before(note)
-        note.innerHTML = `<h6 style="color: #155724">Фото удалён из избранных</h6>`
+        note.innerHTML = `<h3>Фото удалён из избранных</h3>`
         setTimeout(() => note.remove(), 3000);
     }
     catch (error) {
@@ -45,15 +47,15 @@ async function removeFavorite(event) {
         const container = document.getElementsByClassName('container')[0]
         let note = document.createElement('div')
         container.before(note)
-        note.innerHTML = `<h6 style="color: #721c24">Фото уже удалён из избранных</h6>`
+        note.innerHTML = `<h3>Фото уже удалён из избранных</h3>`
         setTimeout(() => note.remove(), 3000);
     }
 }
 
 window.addEventListener('load', function() {
     const addButtons = document.getElementsByClassName('add_chosen');
-    // const removeButtons = document.getElementsByClassName('remove_fav');
+    const removeButtons = document.getElementsByClassName('remove_chosen');
 
     for (let btn of addButtons) {btn.onclick = addChosen}
-    // for (let btn of removeButtons) {btn.onclick = removeFavorite}
+    for (let btn of removeButtons) {btn.onclick = removeChoosen}
 });
