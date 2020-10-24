@@ -11,7 +11,7 @@
                         <a href="{% url 'webapp:photo_delete' photo.pk %}" class="card-link">Delete <i class="far fa-trash-alt"></i></a>
                     {% endif %}
                     </p>
-                    <a href="{% url 'webapp:photo_view' photo.pk %}"><img class="photo" src="{{ photo.image.url }}" width="200" height="auto" alt="picture"></a>
+                    <a href="{% url 'webapp:photo_view' photo.pk %}"><img class="photo" src="{{ photo.image.url }}" width="auto" height="120" alt="picture"></a>
                     <p>Подпись: {{ photo.signature }}<br/>
                     Автор: {{ photo.author }}<br/>
                     Время создания: {{ photo.created_at }}</p>

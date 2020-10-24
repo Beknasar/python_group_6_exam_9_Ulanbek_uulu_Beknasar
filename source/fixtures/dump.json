@@ -1,2 +1,62 @@
 [
+{
+  "model": "webapp.photo",
+  "pk": 1,
+  "fields": {
+    "image": "user_pics/avatarki-dlya-ks-go.jpg",
+    "signature": "CS:GO",
+    "created_at": "2020-10-24T05:32:12.291Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "image": "user_pics/avatar3219.jpg",
+    "signature": "Gumball",
+    "created_at": "2020-10-24T06:12:17.747Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 4,
+  "fields": {
+    "image": "pics/anonymous_steam_avatars-1-1_fMLvuut.jpg",
+    "signature": "\u0410\u043d\u043e\u043d\u0438\u043c",
+    "created_at": "2020-10-24T07:10:15.912Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 5,
+  "fields": {
+    "image": "pics/1738705258_preview_1391378174_preview_DQQYTdh2nk4_Mji74Wv.jpg",
+    "signature": "Thor",
+    "created_at": "2020-10-24T07:10:38.698Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 6,
+  "fields": {
+    "image": "pics/scetchbook.png",
+    "signature": "Girl",
+    "created_at": "2020-10-24T08:24:42.754Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 7,
+  "fields": {
+    "image": "pics/dwoilp3BVjlE.jpg",
+    "signature": "Citty",
+    "created_at": "2020-10-24T08:26:40.505Z",
+    "author": 1
+  }
+}
 ]
